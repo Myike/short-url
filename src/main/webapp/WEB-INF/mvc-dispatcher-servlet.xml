@@ -24,11 +24,11 @@
     <mvc:default-servlet-handler/>
 
     <!-- 跨域处理方式-cors -->
-    <!--<mvc:cors>-->
-        <!--<mvc:mapping path="/**"/>-->
-    <!--</mvc:cors>-->
+    <mvc:cors>
+        <mvc:mapping path="/**" allowed-origins="*" allowed-methods="*"/>
+    </mvc:cors>
 
-    <!--<mvc:interceptors>-->
-        <!--<bean class="cn.com.yunyoutianxia.tour.config.WebHandlerInterceptor"/>-->
-    <!--</mvc:interceptors>-->
+    <mvc:interceptors>
+        <bean class="cn.com.yunyoutianxia.tour.config.WebHandlerInterceptor"/>
+    </mvc:interceptors>
 </beans>

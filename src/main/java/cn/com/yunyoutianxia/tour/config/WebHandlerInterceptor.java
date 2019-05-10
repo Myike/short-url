@@ -25,19 +25,18 @@ public class WebHandlerInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-//        System.out.println("允许的主机" + allowOrigin);
-        String origin = request.getHeader("origin");
-        String realIp = getRealIp(request);
         String callback = request.getParameter("callback");
         String referer = request.getHeader("Referer");
-//        if(!allowOrigin.contains(realIp)) {
-//            JSONObject result = new JSONObject();
-//            result.put("error", "403");
-//            result.put("msg", "不允许的源！请从原网站访问");
-//            String jsonString = JSON.toJSONString(result, SerializerFeature.BrowserCompatible);
-//            responseJson(response,jsonString, callback);
-//            return false;
-//        }
+        String requestURI = request.getRequestURI();
+        String method = request.getMethod();
+        if(!"OPTIONS".equals(method) && "/get/short/url".equals(requestURI) && (StringUtils.isEmpty(referer) || !referer.contains(allowOrigin))) {
+            JSONObject result = new JSONObject();
+            result.put("error", "403");
+            result.put("msg", "不允许的源！请从原网站访问!");
+            String jsonString = JSON.toJSONString(result, SerializerFeature.BrowserCompatible);
+            responseJson(response,jsonString, callback);
+            return false;
+        }
         return true;
     }
 
@@ -68,6 +67,7 @@ public class WebHandlerInterceptor implements HandlerInterceptor {
     public static void responseJson(HttpServletResponse response, String json, String callback){
         response.setHeader("Cache-Control", "no-cache");
         response.setContentType("text/html;charset=UTF-8");
+        response.setHeader("Access-Control-Allow-Origin", "*");
         PrintWriter writer = null;
         try {
             writer = response.getWriter();

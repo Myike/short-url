@@ -62,7 +62,6 @@ public class MainServiceImpl implements MainService {
         if(!redisTemplate.hasKey("tour:short:url:origin:"+originUrl)) {
             RedisAtomicLong urlIdCounter = new RedisAtomicLong("tour:short:url:id", redisTemplate);
             long counter = urlIdCounter.incrementAndGet();
-            System.out.println("自增id:" + counter);
             if(counter < ShortUrlUtil.LENGTH_4_NUM) {
                 urlIdCounter.set(ShortUrlUtil.LENGTH_4_NUM);
                 counter = ShortUrlUtil.LENGTH_4_NUM;

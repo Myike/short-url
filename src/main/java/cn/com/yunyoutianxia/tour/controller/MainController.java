@@ -3,7 +3,6 @@ package cn.com.yunyoutianxia.tour.controller;
 import cn.com.yunyoutianxia.commons.core.util.StringUtils;
 import cn.com.yunyoutianxia.tour.service.MainService;
 import com.alibaba.fastjson.JSONObject;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +29,6 @@ public class MainController {
      * @return      java.lang.Object
      * @date        2019/5/8 16:22
      */
-    @CrossOrigin(origins = "${profile.short.url.allow.host}")
     @RequestMapping(value = "/get/short/url")
     @ResponseBody
     public Object getShortUrl(String originUrl) {
