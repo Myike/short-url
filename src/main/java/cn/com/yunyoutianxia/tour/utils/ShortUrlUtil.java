@@ -1,5 +1,4 @@
 package cn.com.yunyoutianxia.tour.utils;
-import cn.com.yunyoutianxia.commons.util.MD5;
 import java.util.Random;
 
 
@@ -39,7 +38,7 @@ public class ShortUrlUtil {
      * @date        2019/5/8 16:04
      */
     public static String digestAlgorithm(String longUrl) {
-        String encode = MD5.encryptPassword(longUrl);
+        String encode = MD5Util.encode(longUrl);
         String[] restUrls = new String[4];
         for(int i = 0; i < 4; i++) {
             String substring = encode.substring(i * 8, i * 8 + 8);

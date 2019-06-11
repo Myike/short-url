@@ -1,9 +1,9 @@
 package cn.com.yunyoutianxia.tour.controller;
 
-import cn.com.yunyoutianxia.commons.core.util.StringUtils;
 import cn.com.yunyoutianxia.tour.service.MainService;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -55,7 +55,7 @@ public class MainController {
      */
     @RequestMapping("/{code}")
     public void pageVisit(HttpServletResponse response, @PathVariable("code") String code) {
-        if(StringUtils.isNotEmpty(code)) {
+        if(!StringUtils.isEmpty(code)) {
             String originUrl = mainService.getOriginUrl(code);
             response.setStatus(301);
             response.setHeader("Location", originUrl);

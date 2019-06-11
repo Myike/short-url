@@ -1,6 +1,7 @@
 package cn.com.yunyoutianxia.tour.utils;
 
-import cn.com.yunyoutianxia.commons.core.util.StringUtils;
+
+import org.springframework.util.StringUtils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -24,7 +25,7 @@ public class MD5Util {
      * @date        2019/5/7 15:47
      */
     public static String encode(String data) {
-        if(StringUtils.isNotEmpty(data)) {
+        if(!StringUtils.isEmpty(data)) {
             try {
                 MessageDigest messageDigest = MessageDigest.getInstance("MD5");
                 byte[] bytes = messageDigest.digest(data.getBytes());

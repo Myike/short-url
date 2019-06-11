@@ -9,10 +9,14 @@
         http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-4.3.xsd
+
         http://www.springframework.org/schema/util 
         http://www.springframework.org/schema/util/spring-util-4.3.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd ">
+    <!-- spring与spring-mvc属于两个容器，配置文件无法共享 -->
+    <context:property-placeholder location="classpath*:config/config.properties" ignore-unresolvable="true"/>
+
 
     <context:component-scan base-package="cn.com.yunyoutianxia.tour" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
@@ -25,7 +29,7 @@
 
     <!-- 跨域处理方式-cors -->
     <mvc:cors>
-        <mvc:mapping path="/**" allowed-origins="*" allowed-methods="*"/>
+        <mvc:mapping path="/**" allowed-origins="${profile.short.url.allow.host}" allowed-methods="OPTIONS,GET"/>
     </mvc:cors>
 
     <mvc:interceptors>

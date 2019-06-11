@@ -8,11 +8,6 @@
   <packaging>war</packaging>
   <name>tour-short-url</name>
 
-  <parent>
-    <groupId>cn.com.yunyoutianxia</groupId>
-    <artifactId>yytx-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-  </parent>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,29 +15,29 @@
     <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
   </properties>
 
-  <repositories>
-    <repository>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <id>nexus</id>
-      <name>yytx nexus</name>
-      <url>http://172.16.116.102:8081/nexus/content/groups/public</url>
-    </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>nexus</id>
-      <name>yytx nexus</name>
-      <url>http://172.16.116.102:8081/nexus/content/groups/public</url>
-    </pluginRepository>
-  </pluginRepositories>
-  <distributionManagement>
-    <repository>
-      <id>nexus</id>
-      <url>http://172.16.116.102:8081/nexus/content/repositories/snapshots/</url>
-    </repository>
-  </distributionManagement>
+  <!--<repositories>-->
+    <!--<repository>-->
+      <!--<snapshots>-->
+        <!--<enabled>true</enabled>-->
+      <!--</snapshots>-->
+      <!--<id>nexus</id>-->
+      <!--<name>yytx nexus</name>-->
+      <!--<url>http://172.16.116.102:8081/nexus/content/groups/public</url>-->
+    <!--</repository>-->
+  <!--</repositories>-->
+  <!--<pluginRepositories>-->
+    <!--<pluginRepository>-->
+      <!--<id>nexus</id>-->
+      <!--<name>yytx nexus</name>-->
+      <!--<url>http://172.16.116.102:8081/nexus/content/groups/public</url>-->
+    <!--</pluginRepository>-->
+  <!--</pluginRepositories>-->
+  <!--<distributionManagement>-->
+    <!--<repository>-->
+      <!--<id>nexus</id>-->
+      <!--<url>http://172.16.116.102:8081/nexus/content/repositories/snapshots/</url>-->
+    <!--</repository>-->
+  <!--</distributionManagement>-->
 
   <build>
     <finalName>ROOT</finalName>
@@ -73,17 +68,17 @@
           <target>1.8</target>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>tomcat-maven-plugin</artifactId>
-        <version>1.1</version>
-        <configuration>
-          <url>http://172.16.116.103:21085/manager/text</url>
-          <username>tomcat-dev</username>
-          <password>123456</password>
-          <path>/tour-short-url</path>
-        </configuration>
-      </plugin>
+      <!--<plugin>-->
+        <!--<groupId>org.codehaus.mojo</groupId>-->
+        <!--<artifactId>tomcat-maven-plugin</artifactId>-->
+        <!--<version>1.1</version>-->
+        <!--<configuration>-->
+          <!--<url>http://172.16.116.103:21085/manager/text</url>-->
+          <!--<username>tomcat-dev</username>-->
+          <!--<password>123456</password>-->
+          <!--<path>/tour-short-url</path>-->
+        <!--</configuration>-->
+      <!--</plugin>-->
     </plugins>
   </build>
 
@@ -91,42 +86,73 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
+      <version>5.1.7.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
+      <version>5.1.2.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
+      <version>5.1.2.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
+      <version>2.11.0</version>
     </dependency>
+    <!--<dependency>-->
+      <!--<groupId>log4j</groupId>-->
+      <!--<artifactId>log4j</artifactId>-->
+      <!--<version>1.2.17</version>-->
+    <!--</dependency>-->
     <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.7.26</version>
     </dependency>
     <dependency>
       <groupId>redis.clients</groupId>
       <artifactId>jedis</artifactId>
+      <version>2.9.0</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-redis</artifactId>
+      <version>2.1.7.RELEASE</version>
     </dependency>
-    <dependency>
-      <groupId>cn.com.yunyoutianxia</groupId>
-      <artifactId>commons-core</artifactId>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>cn.com.yunyoutianxia</groupId>-->
+      <!--<artifactId>commons-core</artifactId>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>com.ctrip.framework.apollo</groupId>
       <artifactId>apollo-client</artifactId>
+      <version>1.4.0</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
+      <version>2.9.8</version>
+    </dependency>
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.58</version>
+    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>javax.servlet</groupId>-->
+      <!--<artifactId>javax.servlet-api</artifactId>-->
+      <!--<version>4.0.1</version>-->
+      <!--<scope>provided</scope>-->
+    <!--</dependency>-->
+    <!-- https://mvnrepository.com/artifact/com.collaborne.operations/tomcat-cors-regex-filter -->
+    <dependency>
+      <groupId>com.collaborne.operations</groupId>
+      <artifactId>tomcat-cors-regex-filter</artifactId>
+      <version>1.0.0</version>
     </dependency>
   </dependencies>
 

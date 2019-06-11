@@ -4,9 +4,9 @@
          id="WebApp_ID" version="3.1">
   <display-name>短网址服务</display-name>
   <!-- log4j -->
-  <listener>
-    <listener-class>cn.com.yunyoutianxia.tour.init.ServletContextLog4jInitListener</listener-class>
-  </listener>
+  <!--<listener>-->
+    <!--<listener-class>cn.com.yunyoutianxia.tour.init.ServletContextLog4jInitListener</listener-class>-->
+  <!--</listener>-->
   <!-- spring -->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -33,6 +33,22 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
+  <!--<filter>-->
+    <!--<filter-name>CorsFilter</filter-name>-->
+    <!--<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>-->
+    <!--<init-param>-->
+      <!--<param-name>cors.allowed.origins</param-name>-->
+      <!--<param-value>http://localhost:9412</param-value>-->
+    <!--</init-param>-->
+    <!--<init-param>-->
+      <!--<param-name>cors.allowed.methods</param-name>-->
+      <!--<param-value>GET</param-value>-->
+    <!--</init-param>-->
+  <!--</filter>-->
+  <!--<filter-mapping>-->
+    <!--<filter-name>CorsFilter</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
+  <!--</filter-mapping>-->
   <!-- springmvc -->
   <servlet>
     <servlet-name>mvc-dispatcher</servlet-name>
