@@ -22,11 +22,6 @@ public class MainServiceImpl implements MainService {
 
     @Override
     public String getShortCode(String originUrl) {
-//        ValueOperations operations = redisTemplate.opsForValue();
-//        String shortCode = ShortUrlUtil.digestAlgorithm(originUrl);
-//        if(!redisTemplate.hasKey("tour:short:url:code:" + shortCode)) {
-//            operations.set("tour:short:url:code:" + shortCode, originUrl);
-//        }
         String shortCode = hashUrl(originUrl);
         return shortCode;
     }

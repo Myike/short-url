@@ -14,31 +14,6 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
   </properties>
-
-  <!--<repositories>-->
-    <!--<repository>-->
-      <!--<snapshots>-->
-        <!--<enabled>true</enabled>-->
-      <!--</snapshots>-->
-      <!--<id>nexus</id>-->
-      <!--<name>yytx nexus</name>-->
-      <!--<url>http://172.16.116.102:8081/nexus/content/groups/public</url>-->
-    <!--</repository>-->
-  <!--</repositories>-->
-  <!--<pluginRepositories>-->
-    <!--<pluginRepository>-->
-      <!--<id>nexus</id>-->
-      <!--<name>yytx nexus</name>-->
-      <!--<url>http://172.16.116.102:8081/nexus/content/groups/public</url>-->
-    <!--</pluginRepository>-->
-  <!--</pluginRepositories>-->
-  <!--<distributionManagement>-->
-    <!--<repository>-->
-      <!--<id>nexus</id>-->
-      <!--<url>http://172.16.116.102:8081/nexus/content/repositories/snapshots/</url>-->
-    <!--</repository>-->
-  <!--</distributionManagement>-->
-
   <build>
     <finalName>ROOT</finalName>
     <resources>
@@ -73,7 +48,7 @@
         <!--<artifactId>tomcat-maven-plugin</artifactId>-->
         <!--<version>1.1</version>-->
         <!--<configuration>-->
-          <!--<url>http://172.16.116.103:21085/manager/text</url>-->
+          <!--<url>http://*.*.*.*:21085/manager/text</url>-->
           <!--<username>tomcat-dev</username>-->
           <!--<password>123456</password>-->
           <!--<path>/tour-short-url</path>-->

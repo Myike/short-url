@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,7 +16,7 @@ import java.io.PrintWriter;
 /**
  * @Author: zhiwutu
  * @Date: 2019/5/10 10:45
- * @Description:
+ * @Description:  请求主机拦截器
  */
 public class WebHandlerInterceptor implements HandlerInterceptor {
 
@@ -30,14 +29,26 @@ public class WebHandlerInterceptor implements HandlerInterceptor {
         String referer = request.getHeader("Referer");
         String requestURI = request.getRequestURI();
         String method = request.getMethod();
-//        if(!"OPTIONS".equals(method) && "/get/short/url".equals(requestURI) && (StringUtils.isEmpty(referer) || !referer.contains(allowOrigin))) {
-//            JSONObject result = new JSONObject();
-//            result.put("error", "403");
-//            result.put("msg", "不允许的源！请从原网站访问!");
-//            String jsonString = JSON.toJSONString(result, SerializerFeature.BrowserCompatible);
-//            responseJson(response,jsonString, callback);
-//            return false;
-//        }
+        if(!"OPTIONS".equals(method) && "/get/short/url".equals(requestURI)) {
+            boolean flag =  false;
+            if(!StringUtils.isEmpty(referer)) {
+                for(String host: allowOrigin.split(",")) {
+                    //允许的主机
+                    if(referer.contains(host)) {
+                        flag = true;
+                        break;
+                    }
+                }
+            }
+            if(!flag) {
+                JSONObject result = new JSONObject();
+                result.put("error", "403");
+                result.put("msg", "不允许的源！请从原网站访问!");
+                String jsonString = JSON.toJSONString(result, SerializerFeature.BrowserCompatible);
+                responseJson(response,jsonString, callback);
+                return false;
+            }
+        }
         return true;
     }
 
@@ -66,10 +77,9 @@ public class WebHandlerInterceptor implements HandlerInterceptor {
     }
 
     public static void responseJson(HttpServletResponse response, String json, String callback){
-        response.setHeader("Cache-Control", "no-cache");
-            response.setContentType("application/json;charset=UTF-8");
-//        response.setHeader("Access-Control-Allow-Origin", "*");
-//        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setCharacterEncoding("UTF-8");
         PrintWriter writer = null;
         try {
             writer = response.getWriter();
@@ -84,11 +94,5 @@ public class WebHandlerInterceptor implements HandlerInterceptor {
         }
     }
 
-    public String getAllowOrigin() {
-        return allowOrigin;
-    }
 
-    public void setAllowOrigin(String allowOrigin) {
-        this.allowOrigin = allowOrigin;
-    }
 }
